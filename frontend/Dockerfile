@@ -1,12 +1,9 @@
+FROM alpine:latest AS assets
+WORKDIR /dist
+COPY index.html app.js default.conf ./
+
 FROM nginx:alpine
-
-# Limpia contenido por defecto
 RUN rm -rf /usr/share/nginx/html/*
-
-# Copia los archivos del frontend
-COPY index.html app.js /usr/share/nginx/html/
-
-# Copia la configuración custom de Nginx
-COPY default.conf /etc/nginx/conf.d/default.conf
-
+COPY --from=assets /dist/index.html /dist/app.js /usr/share/nginx/html/
+COPY --from=assets /dist/default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80

@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: tienda-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - tienda-network
+
+  backend:
+    build: ./backend
+    container_name: tienda-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - DB_HOST=db
+      - DB_USER=alumno
+      - DB_PASSWORD=alumno123
+      - DB_NAME=tienda_perritos
+      - DB_PORT=3306
+    depends_on:
+      - db
+    networks:
+      - tienda-network
+
+  db:
+    build: ./db
+    container_name: tienda-db
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - tienda-network
+
+volumes:
+  dbdata:
+    name: dbdata
+
+networks:
+  tienda-network:
+    driver: bridge
