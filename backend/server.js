@@ -138,4 +138,4 @@ app.listen(PORT, async () => {
   console.log(`Servidor backend escuchando en puerto ${PORT}`);
   await initDb();
 });
-//comentario para actualizar el main
+// cambio para ver si se actualiza el backend en el contenedor y se refleja en el frontend sin necesidad de reconstruir la imagen del backend.
