@@ -138,4 +138,4 @@ app.listen(PORT, async () => {
   console.log(`Servidor backend escuchando en puerto ${PORT}`);
   await initDb();
 });
-// cambios
+// cambios para probar el flujo de CI/CD en AWS con GitHub Actions

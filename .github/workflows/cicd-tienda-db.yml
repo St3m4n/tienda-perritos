@@ -44,6 +44,6 @@ jobs:
             "docker pull ${{ secrets.ECR_REPO_URL_DB }}:latest",
             "docker stop tienda-db || true",
             "docker rm tienda-db || true",
-            "docker run -d --name tienda-db -p 3306:3306 -v dbdata:/var/lib/mysql ${{ secrets.ECR_REPO_URL_DB }}:latest"
+            "docker run -d --restart always --name tienda-db -p 3306:3306 -v dbdata:/var/lib/mysql ${{ secrets.ECR_REPO_URL_DB }}:latest"
           ]}' \
           --output text

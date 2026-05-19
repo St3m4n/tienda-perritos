@@ -44,6 +44,6 @@ jobs:
             "docker pull ${{ secrets.ECR_REPO_URL_BACKEND }}:latest",
             "docker stop tienda-backend || true",
             "docker rm tienda-backend || true",
-            "docker run -d --name tienda-backend -p 3001:3001 -e DB_HOST=${{ secrets.DB_HOST }} ${{ secrets.ECR_REPO_URL_BACKEND }}:latest"
+            "docker run -d --restart always --name tienda-backend -p 3001:3001 -e DB_HOST=${{ secrets.DB_HOST }} ${{ secrets.ECR_REPO_URL_BACKEND }}:latest"
           ]}' \
           --output text
